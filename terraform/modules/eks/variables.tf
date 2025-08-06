@@ -27,3 +27,5 @@ variable "cluster_role_arn" {
 variable "node_role_arn" {
   type = string
 }
+variable "eks_cluster_role" {}
+variable "eks_node_role" {}

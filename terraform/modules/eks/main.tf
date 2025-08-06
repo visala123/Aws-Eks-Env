@@ -8,11 +8,11 @@ resource "aws_eks_cluster" "example" {
   }
 }
 data "aws_iam_role" "eks_cluster" {
-  name = "my-eks-cluster-cluster-role" # <-- replace with the actual existing role name
+  name = var.eks_cluster_role # <-- replace with the actual existing role name
 }
 
 data "aws_iam_role" "eks_node" {
-  name = "my-eks-cluster-node-role" # <-- replace with actual name
+  name = var.eks_node_role # <-- replace with actual name
 }
 
 # resource "aws_iam_role" "cluster" {
