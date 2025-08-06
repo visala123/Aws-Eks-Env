@@ -45,6 +45,7 @@ module "eks" {
   source            = "../../modules/eks"
 
   cluster_name      = var.cluster_name
+  vpc_id   = data.aws_vpc.default.id
   subnet_ids          = data.aws_subnets.selected.ids
   security_group_id = data.aws_security_group.eks_sg.id
   key_name          = data.aws_key_pair.eks_key.key_name

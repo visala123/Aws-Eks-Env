@@ -1,3 +1,9 @@
+data "aws_subnets" "selected" {
+  filter {
+    name   = "vpc-id"
+    values = [var.vpc_id]
+  }
+}
 resource "aws_eks_cluster" "example" {
   name     = var.cluster_name
   role_arn = var.cluster_role_arn

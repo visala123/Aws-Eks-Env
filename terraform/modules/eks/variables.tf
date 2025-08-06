@@ -29,3 +29,7 @@ variable "node_role_arn" {
 }
 variable "eks_cluster_role" {}
 variable "eks_node_role" {}
+variable "vpc_id" {
+  description = "VPC ID to fetch subnets from"
+  type        = string
+}

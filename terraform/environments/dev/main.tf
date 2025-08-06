@@ -44,13 +44,14 @@ module "eks" {
   source            = "../../modules/eks"
 
   cluster_name      = var.cluster_name
-  subnet_ids          = data.aws_subnets.selected.ids
+  vpc_id            = data.aws_vpc.default.id
+  subnet_ids        = data.aws_subnets.selected.ids
   security_group_id = data.aws_security_group.eks_sg.id
   key_name          = data.aws_key_pair.eks_key.key_name
-  cluster_role_arn    = var.cluster_role_arn #data.aws_iam_role.eks_cluster.arn
-  node_role_arn       = var.node_role_arn#data.aws_iam_role.eks_node.arn
-  eks_cluster_role   = var.eks_cluster_role
-  eks_node_role      = var.eks_node_role
+  cluster_role_arn  = var.cluster_role_arn #data.aws_iam_role.eks_cluster.arn
+  node_role_arn     = var.node_role_arn#data.aws_iam_role.eks_node.arn
+  eks_cluster_role  = var.eks_cluster_role
+  eks_node_role     = var.eks_node_role
 
   desired_size = var.desired_size
   max_size     = var.max_size
