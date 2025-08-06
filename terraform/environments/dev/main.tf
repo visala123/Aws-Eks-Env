@@ -33,11 +33,12 @@ data "aws_key_pair" "eks_key" {
   key_name = var.key_name # Make sure this key exists in AWS
 }
 data "aws_iam_role" "eks_cluster" {
-  name = var.eks_cluster_role #"my-eks-cluster-cluster-role" # <-- replace with the actual existing role name
-}
+  name = var.eks_cluster_role 
+  }
+
 
 data "aws_iam_role" "eks_node" {
-  name = var.eks_node_role #"my-eks-cluster-node-role" # <-- replace with actual name
+  name = var.eks_node_role 
 }
 
 module "eks" {
@@ -49,7 +50,7 @@ module "eks" {
   security_group_id = data.aws_security_group.eks_sg.id
   key_name          = data.aws_key_pair.eks_key.key_name
   cluster_role_arn  = var.cluster_role_arn #data.aws_iam_role.eks_cluster.arn
-  node_role_arn     = var.node_role_arn#data.aws_iam_role.eks_node.arn
+  node_role_arn     = var.node_role_arn   #data.aws_iam_role.eks_node.arn
   eks_cluster_role  = var.eks_cluster_role
   eks_node_role     = var.eks_node_role
 
