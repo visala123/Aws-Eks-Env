@@ -23,12 +23,10 @@ data "aws_subnets" "selected" {
 
 # Fetch security group by tag or name
 data "aws_security_group" "eks_sg" {
-  filter {
-    name   = "tag:Name"
-    values = [var.security_group_id]
-  }
+ id = var.security_group_id
+  
 
-  vpc_id = data.aws_vpc.default.id
+  #vpc_id = data.aws_vpc.default.id
 }
 
 # Fetch existing key pair
