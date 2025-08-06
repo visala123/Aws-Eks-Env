@@ -8,3 +8,5 @@ eks_node_role  ="my-eks-cluster-node-role"
 subnet_ids    = [subnet-062bb00dc705cd439,subnet-0dddaa563e630393d,subnet-0ce7e28d80ec586ca,subnet-035a2095d3206488e]
 security_group_id = "sg-0153d37e10c6bf963"
 key_name       = "my-key"
+cluster_role_arn =  "arn:aws:iam::515517371473:role/my-eks-cluster-cluster-role"
+node_role_arn    = "arn:aws:iam::515517371473:role/my-eks-cluster-node-role"
