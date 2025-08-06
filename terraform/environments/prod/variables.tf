@@ -2,12 +2,8 @@ variable "cluster_name" {}
 variable "subnet_ids" {
   type = list(string)
 }
-variable "security_group_id" {
-  type = string
-}
-variable "key_name" {
-  type = string
-}
+variable "security_group_id" {}
+variable "key_name" {}
 variable "desired_size" {
   type = number
 }
@@ -17,19 +13,9 @@ variable "max_size" {
 variable "min_size" {
   type = number
 }
-variable "instance_type" {
-  type = string
-}
-variable "cluster_role_arn" {
-  type = string
-}
+variable "instance_type" {}
+variable "cluster_role_arn" {}
 
-variable "node_role_arn" {
-  type = string
-}
-variable "eks_cluster_role" {
-  type = string
-}
-variable "eks_node_role" {
-  type = string
-}
+variable "node_role_arn" {}
+variable "eks_cluster_role" {}
+variable "eks_node_role" {}

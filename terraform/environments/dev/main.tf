@@ -52,6 +52,8 @@ module "eks" {
   key_name          = data.aws_key_pair.eks_key.key_name
   cluster_role_arn    = data.aws_iam_role.eks_cluster.arn
   node_role_arn       = data.aws_iam_role.eks_node.arn
+  eks_cluster_role   = var.eks_cluster_role
+  eks_node_role      = var.eks_node_role
 
   desired_size = var.desired_size
   max_size     = var.max_size

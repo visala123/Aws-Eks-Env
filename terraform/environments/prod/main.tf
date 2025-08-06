@@ -25,7 +25,7 @@ data "aws_subnets" "selected" {
 data "aws_security_group" "eks_sg" {
   filter {
     name   = "tag:Name"
-    values = ["sg"]
+    values = [var.security_group_id]
   }
 
   vpc_id = data.aws_vpc.default.id
@@ -33,28 +33,32 @@ data "aws_security_group" "eks_sg" {
 
 # Fetch existing key pair
 data "aws_key_pair" "eks_key" {
-  key_name = "my-key" # Make sure this key exists in AWS
+  key_name = var.key_name # Make sure this key exists in AWS
 }
 data "aws_iam_role" "eks_cluster" {
-  name = var.eks_cluster_role # <-- replace with the actual existing role name
+  name = var.eks_cluster_role 
 }
 
 data "aws_iam_role" "eks_node" {
-  name = var.eks_node_role # <-- replace with actual name
+  name = var.eks_node_role 
 }
 
 module "eks" {
   source            = "../../modules/eks"
 
   cluster_name      = var.cluster_name
-  subnet_ids        = data.aws_subnets.selected.ids
+  subnet_ids          = data.aws_subnets.selected.ids
   security_group_id = data.aws_security_group.eks_sg.id
   key_name          = data.aws_key_pair.eks_key.key_name
-  cluster_role_arn  = data.aws_iam_role.eks_cluster.arn
-  node_role_arn     = data.aws_iam_role.eks_node.arn
+  cluster_role_arn    = data.aws_iam_role.eks_cluster.arn
+  node_role_arn       = data.aws_iam_role.eks_node.arn
 
-  desired_size      = var.desired_size
-  max_size          = var.max_size
-  min_size          = var.min_size
-  instance_type     = var.instance_type
+  eks_cluster_role   = var.eks_cluster_role
+  eks_node_role      = var.eks_node_role
+
+  desired_size = var.desired_size
+  max_size     = var.max_size
+  min_size     = var.min_size
+  instance_type = var.instance_type
 }
+

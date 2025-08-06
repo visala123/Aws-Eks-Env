@@ -20,12 +20,12 @@ variable "min_size" {
 variable "instance_type" {
   type = string
 }
-# variable "cluster_role_arn" {
-#   type = string
-# }
+variable "cluster_role_arn" {
+  type = string
+}
 
-# variable "node_role_arn" {
-#   type = string
-# }
+variable "node_role_arn" {
+  type = string
+}
 variable "eks_cluster_role" {}
 variable "eks_node_role" {}
