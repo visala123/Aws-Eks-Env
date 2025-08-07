@@ -252,6 +252,8 @@ Once approved, resources are deployed
 
 # Outputs
 
+cluster_name
+
 ##  Cleanup
 ```terminal
 
