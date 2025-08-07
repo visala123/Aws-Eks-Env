@@ -1,15 +1,15 @@
-# data "aws_subnets" "selected" {
-#   filter {
-#     name   = "vpc-id"
-#     values = [var.vpc_id]
-#   }
-# }
+data "aws_subnets" "selected" {
+  filter {
+    name   = "vpc-id"
+    values = [var.vpc_id]
+  }
+}
 resource "aws_eks_cluster" "example" {
   name     = var.cluster_name
   role_arn = var.cluster_role_arn
 
   vpc_config {
-    subnet_ids         =var.subnet_ids[0]    #data.aws_subnets.selected.ids
+    subnet_ids         = data.aws_subnets.selected.ids  # var.subnet_ids[0]  
     security_group_ids = [var.security_group_id]
   }
 }
@@ -19,7 +19,7 @@ resource "aws_eks_node_group" "default" {
   node_group_name = "${var.cluster_name}-node-group"
 
   node_role_arn = var.node_role_arn
-  subnet_ids    =var.subnet_ids[0] #data.aws_subnets.selected.ids
+  subnet_ids    = data.aws_subnets.selected.ids     #var.subnet_ids[0] 
 
   scaling_config {
     desired_size = var.desired_size
