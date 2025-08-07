@@ -3,6 +3,10 @@ data "aws_subnets" "selected" {
     name   = "vpc-id"
     values = [var.vpc_id]
   }
+  filter {
+    name   = "availability-zone"
+    values = ["us-east-1a", "us-east-1b"]  # ✅ Only include supported AZs
+  }
 }
 resource "aws_eks_cluster" "example" {
   name     = var.cluster_name
