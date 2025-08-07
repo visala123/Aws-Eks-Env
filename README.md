@@ -1,7 +1,6 @@
 # Aws-Eks-Env
-# Aws-Ec2-Env
 
-This project provisions an AWS EC2 instance using Terraform in a modular structure with CI/CD automation powered by GitHub Actions. It supports multi-environment deployments (dev, prod) and includes Infracost for cost estimation.
+This project provisions an AWS EKS Cluster using Terraform in a modular structure with CI/CD automation powered by GitHub Actions. It supports multi-environment deployments (dev, prod) and includes Infracost for cost estimation.
 
  
 ## Prerequisites
@@ -81,7 +80,7 @@ Click Add rule:
 
 Type: SSH
 Protocol: TCP
-Port range: 22
+Port range: 22 and 80 and 443
 Source: My IP (or Anywhere for testing — but not recommended for production)
 
 (Optional) Add HTTP (80) or HTTPS (443) if you want to serve web traffic.
@@ -149,11 +148,23 @@ terraform/
 ## Update the terraform.tfvars 
 update the below values according to your configuration.
 
-subnet_name    = " "
+VPC   =default vpc
 
-sg_id          = " "
+subnet_ids    = " "
+
+security_group_id = " "
 
 key_name       = " " 
+
+eks_cluster_role =" "
+
+eks_node_role =" "
+
+cluster_role_arn =" "
+
+node_role-arn =" "
+
+passed all these values as a data blocks.
 
 ##  Required Secrets in GitHub
 
@@ -255,6 +266,6 @@ terraform destroy
 ```
 
 # References
-AWS EC2 instance - Terraform Docs
+AWS EKS Cluster - Terraform Docs
 
-https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance
+https://registry.tf-registry-prod-use1.terraform.io/providers/hashicorp/aws/latest/docs/resources/eks_cluster
