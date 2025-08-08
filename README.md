@@ -120,6 +120,74 @@ Click Create key pair.
 
 Your private key file will be downloaded — store it securely (you won’t be able to download it again).
 
+## Create IAM Roles
+
+Part 1: Create EKS Cluster Role
+This role is used by the EKS control plane to manage the cluster.
+
+Steps:
+Go to IAM Console → https://console.aws.amazon.com/iam
+
+Click Roles from the left panel.
+
+Click Create role.
+
+Select trusted entity:
+
+Choose AWS service
+
+Select EKS as the service
+
+Use EKS - Cluster as the use case
+
+Click Next
+
+Attach permissions:
+
+Search and select: AmazonEKSClusterPolicy
+
+Click Next
+
+Name the role:
+
+Name: eksClusterRole
+
+(Optional) Add description and tags
+
+Click Create role
+
+Part 2: Create EKS Node Role
+This role is assumed by the EC2 worker nodes to communicate with the cluster and other AWS services.
+
+Steps:
+IAM Console → Roles → Create role
+
+Select trusted entity:
+
+Choose AWS service
+
+Select EC2 as the use case
+
+Click Next
+
+Attach policies:
+
+AmazonEKSWorkerNodePolicy
+
+AmazonEKS_CNI_Policy
+
+AmazonEC2ContainerRegistryReadOnly
+
+Click Next
+
+Name the role:
+
+Name: eksNodeGroupRole
+
+(Optional) Add description and tags
+
+Click Create role
+
  ## Project Structure
 
 ```
